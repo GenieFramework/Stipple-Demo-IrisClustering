@@ -1,0 +1,1 @@
+C:\Users\adria\AppData\Local\Programs\Julia\Julia-1.4.1\bin\julia --color=yes --depwarn=no -q -- ../bootstrap.jl -r %*
