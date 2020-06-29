@@ -1,3 +1,19 @@
+# TODO [Adrian]
+#=
+
+  + we'll need to append .stipple-core class to body element
+
+  + we don't use roboto in this project
+
+  + HEAD
+  + <link href="https://fonts.googleapis.com/css?family=Material+Icons" rel="stylesheet" type="text/css">
+  + <link href="https://cdn.jsdelivr.net/npm/animate.css@^4.0.0/animate.min.css" rel="stylesheet" type="text/css">
+  + <link href="https://cdn.jsdelivr.net/npm/quasar@1.11.2/dist/quasar.min.css" rel="stylesheet" type="text/css">
+
+  +
+
+=#
+
 using Genie.Router
 using Genie.Renderer.Html
 
