@@ -1,17 +1,17 @@
-# TODO [Adrian]
+# Notes for [Adrian]
 #=
+  + Template in https://github.com/GenieFramework/stipple/tree/iris-clustering-template
+
+  + file is in templates/src/vue/components/iris-clustering-example.vue
 
   + we'll need to append .stipple-core class to body element
 
   + we don't use roboto in this project
 
-  + HEAD
+  + I'm using the following CSS
   + <link href="https://fonts.googleapis.com/css?family=Material+Icons" rel="stylesheet" type="text/css">
   + <link href="https://cdn.jsdelivr.net/npm/animate.css@^4.0.0/animate.min.css" rel="stylesheet" type="text/css">
   + <link href="https://cdn.jsdelivr.net/npm/quasar@1.11.2/dist/quasar.min.css" rel="stylesheet" type="text/css">
-
-  +
-
 =#
 
 using Genie.Router
@@ -88,7 +88,15 @@ end
 function ui(model::Model)
   layout([
     page(root(model), class="container", [
+
+      #=
+        header() or title() element instead
+        basic version: shows stipple logo
+        pro version: shows custom logo
+      =#
       h3("Iris data k-means clustering")
+
+
       row([
         cell(size=10, [
           h5("Iris data")
