@@ -90,68 +90,68 @@ function ui(model::Model)
     page(root(model), class="container", [
 
       #=
-        heading() element instead
+        heading(title, logo) element instead
         for starters: take a string and a logo image
       =#
       h3("Iris data k-means clustering")
 
 
-      #=
-        content() should contain the main content section of the app
-        ideally: graphs, tables and data rendering in general
-        should take rows and cells either way
-      =#
       row([
+
+        #=
+          it should always render to col col-xs-12 and then col-md-${size}
+          need to figure out what to render if no size is passed...
+        =#
         cell(size=10, [
           h5("Iris data")
 
           # currently showing 50 records per page
-          # maybe show 25 by default=?
+          # maybe show 25 by default?
           table(@data(:iris_data); pagination=:credit_data_pagination, dense=true, flat=true)
         ])
-        # cell(size=2, [
-        #   h5("Clustering")
-        #   row([
-        #     cell([
-        #       h6("Number of clusters")
-        #       slider(@data(:no_of_clusters), 1:1:20; markers=true, label=true)
-        #     ])
-        #     cell([
-        #       h6("Number of iterations")
-        #       slider(@data(:no_of_iterations), 10:10:200; markers=true, label=true)
-        #     ])
-        #     cell([
-        #       h6("Features")
-        #       select(:clustering_features; options=:features, multiple=true)
-        #     ])
-        #   ])
-        # ])
+        cell(size=2, [
+          h5("Clustering")
+          row([
+            cell([
+              h6("Number of clusters")
+              slider(@data(:no_of_clusters), 1:1:20; markers=true, label=true)
+            ])
+            cell([
+              h6("Number of iterations")
+              slider(@data(:no_of_iterations), 10:10:200; markers=true, label=true)
+            ])
+            cell([
+              h6("Features")
+              select(:clustering_features; options=:features, multiple=true)
+            ])
+          ])
+        ])
       ])
-      # row([
-      #   cell(size=5, [
-      #     h5("Species clusters")
-      #     plot(@data(:iris_plot_data); options=:plot_options)
-      #   ])
-      #   cell(size=5, [
-      #     h5("k-means clusters")
-      #     plot(@data(:cluster_plot_data); options=:plot_options)
-      #   ])
-      #   cell(size=2, [
-      #     h5("Plotting")
-      #     row([
-      #       cell([
-      #         h6("X feature")
-      #         select(:xfeature; options=:features)
-      #       ])
-      #     ])
-      #     row([
-      #       cell([
-      #         h6("Y feature")
-      #         select(:yfeature; options=:features)
-      #       ])
-      #     ])
-      #   ])
-      # ])
+      row([
+        cell(size=5, [
+          h5("Species clusters")
+          plot(@data(:iris_plot_data); options=:plot_options)
+        ])
+        cell(size=5, [
+          h5("k-means clusters")
+          plot(@data(:cluster_plot_data); options=:plot_options)
+        ])
+        cell(size=2, [
+          h5("Plotting")
+          row([
+            cell([
+              h6("X feature")
+              select(:xfeature; options=:features)
+            ])
+          ])
+          row([
+            cell([
+              h6("Y feature")
+              select(:yfeature; options=:features)
+            ])
+          ])
+        ])
+      ])
     ])
 
     # style("
