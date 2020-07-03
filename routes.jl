@@ -154,6 +154,7 @@ function ui(model::Model)
       ])
     ])
 
+    # HOPEFULLY THE USER WON'T HAVE TO ADD CSS :) :) :)
     # style("
     # h1,h2,h3,h4,h5,h6 {
     #   margin-bottom: auto;
