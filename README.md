@@ -1,6 +1,10 @@
 # Iris flowers dataset k-means clustering dashboard
 
-Demo data dashboard built with Stipple.jl, StippleUI.jl, StippleCharts.jl, and Genie.jl
+Demo data dashboard built with
+[Stipple.jl](https://github.com/GenieFramework/Stipple.jl),
+[StippleUI.jl](https://github.com/GenieFramework/StippleUI.jl),
+[StippleCharts.jl](https://github.com/GenieFramework/StippleCharts.jl), and
+[Genie.jl](https://github.com/GenieFramework/Genie.jl)
 
 ## Installation
 
@@ -28,5 +32,5 @@ julia> using Genie
 julia> Genie.loadapp()
 ```
 
-The application will start on port 8100. Open your web browser and navigate to http://localhost:8100
+The application will start on port 8100. Open your web browser and navigate to <http://localhost:8100>
 Pick the x and y features to render the plots. Use the various slides to control the model.
