@@ -5,7 +5,7 @@ using Genie.Router
 using Genie.Renderer.Html
 
 using Stipple, Stipple.Layout, Stipple.Elements
-using StippleUI, StippleUI.Select, StippleUI.Table, StippleUI.Range, StippleUI.Heading
+using StippleUI, StippleUI.Select, StippleUI.Table, StippleUI.Range, StippleUI.Heading, StippleUI.Dashboard
 using StippleCharts, StippleCharts.Charts
 
 using CSV, DataFrames, Clustering
