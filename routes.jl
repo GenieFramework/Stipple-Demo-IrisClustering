@@ -1,15 +1,18 @@
+using Revise
+
+using Genie
 using Genie.Router
 using Genie.Renderer.Html
 
 using Stipple, Stipple.Layout, Stipple.Elements
-using StippleQuasar, StippleQuasar.Select, StippleQuasar.Table, StippleQuasar.Range
-using StippleApexCharts, StippleApexCharts.Plots
+using StippleUI, StippleUI.Select, StippleUI.Table, StippleUI.Range, StippleUI.Heading
+using StippleCharts, StippleCharts.Charts
 
 using CSV, DataFrames, Clustering
 
 import Genie.Renderer.Html: select
 
-data = DataFrames.insertcols!(CSV.read("data/iris.csv")[:, 2:end], :Cluster => zeros(Int, 150))
+data = DataFrames.insertcols!(DataFrame!(CSV.File("data/iris.csv"))[:, 2:end], :Cluster => zeros(Int, 150))
 
 Base.@kwdef mutable struct Model <: ReactiveModel
   iris_data::R{DataTable} = DataTable(data)
@@ -28,7 +31,7 @@ Base.@kwdef mutable struct Model <: ReactiveModel
   clustering_features::R{Vector{String}} = ["SepalLength", "SepalWidth", "PetalLength", "PetalWidth"]
 end
 
-Stipple.register_components(Model, StippleApexCharts.COMPONENTS)
+Stipple.register_components(Model, StippleCharts.COMPONENTS)
 
 const model = Stipple.init(Model())
 
@@ -70,50 +73,47 @@ onany(model.no_of_clusters, model.no_of_iterations, model.clustering_features) d
 end
 
 function ui(model::Model)
-  layout([
-    page(root(model), class="container", [
-      h3("Iris data k-means clustering")
+  dashboard(
+    root(model), class="container", [
+      heading("Iris data k-means clustering")
+
       row([
-        cell(size=10, [
-          h5("Iris data")
-          table(@data(:iris_data); pagination=:credit_data_pagination, dense=true, flat=true, style="height: 350px;")
-        ])
-        cell(size=2, [
+        cell(class="st-module", [
           h5("Clustering")
+
           row([
-            cell([
+            cell(size=3, [
               h6("Number of clusters")
-              slider(@data(:no_of_clusters), 1:1:20; markers=true, label=true)
+              slider( 1:1:20,
+                      @data(:no_of_clusters);
+                      markers=true, label=true)
             ])
-            cell([
+            cell()
+            cell(size=3, [
               h6("Number of iterations")
-              slider(@data(:no_of_iterations), 10:10:200; markers=true, label=true)
+              slider( 10:10:200,
+                      @data(:no_of_iterations);
+                      markers=true, label=true)
             ])
-            cell([
+            cell()
+            cell(size=4, [
               h6("Features")
-              select(:clustering_features; options=:features, multiple=true)
+              select(:clustering_features;
+                      options=:features, multiple=true)
             ])
           ])
         ])
       ])
+
       row([
-        cell(size=5, [
-          h5("Species clusters")
-          plot(@data(:iris_plot_data); options=:plot_options)
-        ])
-        cell(size=5, [
-          h5("k-means clusters")
-          plot(@data(:cluster_plot_data); options=:plot_options)
-        ])
-        cell(size=2, [
+        cell(class="st-module", [
           h5("Plotting")
           row([
             cell([
               h6("X feature")
               select(:xfeature; options=:features)
             ])
-          ])
-          row([
+
             cell([
               h6("Y feature")
               select(:yfeature; options=:features)
@@ -121,20 +121,36 @@ function ui(model::Model)
           ])
         ])
       ])
-    ])
 
-    style("
-    h1,h2,h3,h4,h5,h6 {
-      margin-bottom: auto;
-      margin-top: auto;
-    }
-    .container {
-      padding: 10px;
-    }
-    ")
-  ],
-  title="Iris Data K-Means Clustering"
+      row([
+        cell(class="st-module", [
+          h5("Species clusters")
+          plot(:iris_plot_data; options=:plot_options)
+        ])
+
+        cell(class="st-module", [
+          h5("k-means clusters")
+          plot(:cluster_plot_data; options=:plot_options)
+        ])
+      ])
+
+      row([
+        cell(class="st-module", [
+          h5("Iris data")
+          table(:iris_data; pagination=:credit_data_pagination,
+                                    dense=true, flat=true, style="height: 350px;")
+        ])
+      ])
+
+      footer(class="st-footer q-pa-md", [
+        cell([
+          img(class="st-logo", src="/img/st-logo.svg")
+          span(" &copy; 2020")
+        ])
+      ])
+    ], title="Iris Data K-Means Clustering"
   )
+
 end
 
 route("/") do
