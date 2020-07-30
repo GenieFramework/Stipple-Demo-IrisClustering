@@ -36,4 +36,5 @@ The application will start on port 8100. Open your web browser and navigate to <
 
 Pick the x and y features to render the plots. Use the various slides to control the model.
 
-<img src="https://www.dropbox.com/s/hkyahy8gmv4lae9/Screenshot_Iris_Data_K-Means_Clustering.png?dl=1" width=800>
+<img src="https://genieframework.com/githubimg/Screenshot_Iris_Data.png" width=800>
+
