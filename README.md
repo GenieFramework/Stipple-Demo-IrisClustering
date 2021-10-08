@@ -1,3 +1,5 @@
+# NOTE: This repository is deprecated. For new Stipple examples check [this Repository](https://github.com/GenieFramework/StippleDemos)
+
 # Iris flowers dataset k-means clustering dashboard
 
 Demo data dashboard built with
